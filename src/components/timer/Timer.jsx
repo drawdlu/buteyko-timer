@@ -30,18 +30,24 @@ const Timer = ({ breatheIn, breatheOut, hold, duration }) => {
     setFinished(true);
   }
 
-  return (
-    <div className="timer">
-      {finished ? (
-        <div className="finished"> "Done" </div>
-      ) : (
-        <div className="counter">
+  let content;
+
+  if (duration) {
+    if (finished) {
+      content = <div className="finished"> "Done" </div>;
+    } else {
+      content = (
+        <>
           <div className="currentCount">{count}</div>
           <div className="phaseName">{phaseNames[index]}</div>
-        </div>
-      )}
-    </div>
-  );
+        </>
+      );
+    }
+  } else {
+    content = <div className="beforeStart">Breathe</div>;
+  }
+
+  return <div className="counter">{content}</div>;
 };
 
 export default Timer;

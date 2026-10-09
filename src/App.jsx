@@ -6,7 +6,7 @@ function App() {
   const [breatheInTime, setBreatheInTime] = useState(2);
   const [breatheOutTime, setBreatheOutTime] = useState(3);
   const [holdTime, setHoldTime] = useState(3);
-  const [duration, setDuration] = useState(60);
+  const [duration, setDuration] = useState(0);
 
   return (
     <main>
