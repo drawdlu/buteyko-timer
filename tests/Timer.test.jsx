@@ -3,6 +3,7 @@ import { render, screen, act } from "@testing-library/react";
 import Timer from "../src/components/timer/Timer";
 
 describe("Timer Component", () => {
+  const phases = { breatheIn: 2, hold: 3, breatheOut: 3 };
   beforeEach(() => {
     vi.useFakeTimers();
   });
@@ -12,7 +13,7 @@ describe("Timer Component", () => {
   });
 
   it("renders timer correctly at breatheIn", () => {
-    render(<Timer breatheIn={2} breatheOut={3} hold={3} duration={10} />);
+    render(<Timer phases={phases} duration={10} start={true} />);
 
     const timeToAdvance = 1;
     for (let i = 0; i < timeToAdvance; ++i) {
@@ -26,7 +27,7 @@ describe("Timer Component", () => {
   });
 
   it("renders timer correctly at hold", () => {
-    render(<Timer breatheIn={2} breatheOut={3} hold={3} duration={10} />);
+    render(<Timer phases={phases} duration={10} start={true} />);
 
     const timeToAdvance = 2;
     for (let i = 0; i < timeToAdvance; ++i) {
@@ -40,7 +41,7 @@ describe("Timer Component", () => {
   });
 
   it("renders timer correctly at breatheOut", () => {
-    render(<Timer breatheIn={2} breatheOut={3} hold={3} duration={10} />);
+    render(<Timer phases={phases} duration={10} start={true} />);
 
     const timeToAdvance = 5;
     for (let i = 0; i < timeToAdvance; ++i) {
