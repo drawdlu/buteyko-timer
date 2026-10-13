@@ -23,7 +23,9 @@ function App() {
   return (
     <main>
       <Timer phases={phases} duration={duration} start={start} />
-      <TimerForm phases={phases} duration={duration} onStart={handleStart} />
+      {!start && (
+        <TimerForm phases={phases} duration={duration} onStart={handleStart} />
+      )}
     </main>
   );
 }

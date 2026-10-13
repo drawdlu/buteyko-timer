@@ -5,11 +5,12 @@ const Timer = ({ phases, duration, start }) => {
   const [durationCount, setDurationCount] = useState(0);
   const [count, setCount] = useState(1);
   const [finished, setFinished] = useState(false);
+  const [pause, setPause] = useState(false);
 
   const phaseNames = ["Breathe In", "Hold", "Breathe Out"];
 
   useEffect(() => {
-    if (durationCount >= duration || !start) return;
+    if (durationCount >= duration || !start || pause) return;
     const phase = [phases.breatheIn, phases.hold, phases.breatheOut];
 
     const timer = setTimeout(() => {
@@ -24,7 +25,7 @@ const Timer = ({ phases, duration, start }) => {
     }, 1000);
 
     return () => clearTimeout(timer);
-  }, [index, count, durationCount, duration, phases, start]);
+  }, [index, count, durationCount, duration, phases, start, pause]);
 
   if (!start) {
     return (
@@ -40,6 +41,14 @@ const Timer = ({ phases, duration, start }) => {
 
   let content;
 
+  const pauseTimer = () => {
+    setPause(true);
+  };
+
+  const continueTimer = () => {
+    setPause(false);
+  };
+
   if (finished) {
     content = <div className="finished"> "Done" </div>;
   } else {
@@ -47,6 +56,11 @@ const Timer = ({ phases, duration, start }) => {
       <>
         <div className="currentCount">{count}</div>
         <div className="phaseName">{phaseNames[index]}</div>
+        {pause ? (
+          <button onClick={continueTimer}>Continue</button>
+        ) : (
+          <button onClick={pauseTimer}>Pause</button>
+        )}
       </>
     );
   }
