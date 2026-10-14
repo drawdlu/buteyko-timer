@@ -4,13 +4,13 @@ const Timer = ({ phases, duration, start, onRestart }) => {
   const [index, setIndex] = useState(0);
   const [durationCount, setDurationCount] = useState(0);
   const [count, setCount] = useState(1);
-  const [finished, setFinished] = useState(false);
   const [pause, setPause] = useState(false);
 
   const phaseNames = ["Breathe In", "Hold", "Breathe Out"];
+  const isFinished = durationCount >= duration;
 
   useEffect(() => {
-    if (durationCount >= duration || !start || pause) return;
+    if (isFinished || !start || pause) return;
     const phase = [phases.breatheIn, phases.hold, phases.breatheOut];
 
     const timer = setTimeout(() => {
@@ -25,7 +25,7 @@ const Timer = ({ phases, duration, start, onRestart }) => {
     }, 1000);
 
     return () => clearTimeout(timer);
-  }, [index, count, durationCount, duration, phases, start, pause]);
+  }, [index, count, durationCount, isFinished, phases, start, pause]);
 
   if (!start) {
     return (
@@ -33,10 +33,6 @@ const Timer = ({ phases, duration, start, onRestart }) => {
         <div className="beforeStart">Breathe</div>
       </div>
     );
-  }
-
-  if (durationCount >= duration && !finished) {
-    setFinished(true);
   }
 
   let content;
@@ -53,12 +49,11 @@ const Timer = ({ phases, duration, start, onRestart }) => {
     setIndex(0);
     setDurationCount(0);
     setCount(1);
-    setFinished(false);
     setPause(false);
     onRestart();
   };
 
-  if (finished) {
+  if (isFinished) {
     content = (
       <>
         <div className="finished"> "Done" </div>{" "}
