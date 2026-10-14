@@ -80,7 +80,7 @@ const TimerForm = ({ phases, duration, onStart }) => {
           <input
             type="number"
             name="duration"
-            min="30"
+            min="60"
             value={durationTime}
             onChange={handleDurationChange}
             required

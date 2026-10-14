@@ -4,10 +4,11 @@ import Timer from "./components/timer/Timer";
 import TimerForm from "./components/timerform/TimerForm";
 
 const defaultPhases = { breatheIn: 2, hold: 3, breatheOut: 3 };
+const defaultDuration = 60;
 
 function App() {
   const [phases, setPhases] = useState(defaultPhases);
-  const [duration, setDuration] = useState(60);
+  const [duration, setDuration] = useState(defaultDuration);
   const [start, setStart] = useState(false);
 
   const handleStart = (data) => {
@@ -20,9 +21,18 @@ function App() {
     setStart(true);
   };
 
+  const handleRestart = () => {
+    setStart(false);
+  };
+
   return (
     <main>
-      <Timer phases={phases} duration={duration} start={start} />
+      <Timer
+        phases={phases}
+        duration={duration}
+        start={start}
+        onRestart={handleRestart}
+      />
       {!start && (
         <TimerForm phases={phases} duration={duration} onStart={handleStart} />
       )}

@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 
-const Timer = ({ phases, duration, start }) => {
+const Timer = ({ phases, duration, start, onRestart }) => {
   const [index, setIndex] = useState(0);
   const [durationCount, setDurationCount] = useState(0);
   const [count, setCount] = useState(1);
@@ -49,8 +49,24 @@ const Timer = ({ phases, duration, start }) => {
     setPause(false);
   };
 
+  const handleRestart = () => {
+    setIndex(0);
+    setDurationCount(0);
+    setCount(1);
+    setFinished(false);
+    setPause(false);
+    onRestart();
+  };
+
   if (finished) {
-    content = <div className="finished"> "Done" </div>;
+    content = (
+      <>
+        <div className="finished"> "Done" </div>{" "}
+        <div className="restart">
+          <button onClick={handleRestart}>Restart Symbol</button>
+        </div>
+      </>
+    );
   } else {
     content = (
       <>
@@ -61,6 +77,9 @@ const Timer = ({ phases, duration, start }) => {
         ) : (
           <button onClick={pauseTimer}>Pause</button>
         )}
+        <div className="restart">
+          <button onClick={handleRestart}>Restart Symbol</button>
+        </div>
       </>
     );
   }
