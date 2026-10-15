@@ -6,12 +6,12 @@ const Timer = ({ phases, duration, start, onRestart }) => {
   const [count, setCount] = useState(1);
   const [pause, setPause] = useState(false);
 
-  const phaseNames = ["Breathe In", "Hold", "Breathe Out"];
+  const phaseNames = ["Breathe In", "Breathe Out", "Hold"];
   const isFinished = durationCount >= duration;
 
   useEffect(() => {
     if (isFinished || !start || pause) return;
-    const phase = [phases.breatheIn, phases.hold, phases.breatheOut];
+    const phase = [phases.breatheIn, phases.breatheOut, phases.hold];
 
     const timer = setTimeout(() => {
       setDurationCount((prev) => prev + 1);

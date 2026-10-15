@@ -52,18 +52,6 @@ const TimerForm = ({ phases, duration, onStart }) => {
           />
         </div>
         <div className="field">
-          <label htmlFor="hold">Hold Time: </label>
-          <input
-            type="number"
-            name="hold"
-            id="hold"
-            min="3"
-            value={holdTime}
-            onChange={handleHoldChange}
-            required
-          />
-        </div>
-        <div className="field">
           <label htmlFor="breatheOut">Breathe Out Time: </label>
           <input
             type="number"
@@ -72,6 +60,18 @@ const TimerForm = ({ phases, duration, onStart }) => {
             min="3"
             value={breatheOutTime}
             onChange={handleBreatheOutChange}
+            required
+          />
+        </div>
+        <div className="field">
+          <label htmlFor="hold">Hold Time: </label>
+          <input
+            type="number"
+            name="hold"
+            id="hold"
+            min="3"
+            value={holdTime}
+            onChange={handleHoldChange}
             required
           />
         </div>

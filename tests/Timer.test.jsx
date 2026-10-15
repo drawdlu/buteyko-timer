@@ -37,7 +37,7 @@ describe("Timer Component", () => {
     }
 
     expect(screen.getByText("1")).toBeInTheDocument();
-    expect(screen.getByText(/hold/i)).toBeInTheDocument();
+    expect(screen.getByText(/breathe out/i)).toBeInTheDocument();
   });
 
   it("renders timer correctly at breatheOut", () => {
@@ -51,6 +51,6 @@ describe("Timer Component", () => {
     }
 
     expect(screen.getByText("1")).toBeInTheDocument();
-    expect(screen.getByText(/breathe out/i)).toBeInTheDocument();
+    expect(screen.getByText(/hold/i)).toBeInTheDocument();
   });
 });
