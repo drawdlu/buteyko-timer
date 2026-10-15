@@ -1,25 +1,49 @@
 import { useState } from "react";
 
-const TimerForm = ({ phases, duration, onStart }) => {
+const TimerForm = ({ phases, breathingSets, onStart }) => {
   const [breatheInTime, setBreatheInTime] = useState(phases.breatheIn);
   const [breatheOutTime, setBreatheOutTime] = useState(phases.breatheOut);
   const [holdTime, setHoldTime] = useState(phases.hold);
-  const [durationTime, setDurationTime] = useState(duration);
+  const [breathingSetCount, setBreathingSetCount] = useState(breathingSets);
+
+  const getDuration = (oneSetTotal, setCount) => {
+    const totalSeconds = oneSetTotal * setCount;
+    const seconds = totalSeconds % 60;
+    const minutes = Math.trunc(totalSeconds / 60);
+
+    return { minutes: minutes, seconds: seconds };
+  };
+
+  const [duration, setDuration] = useState(
+    getDuration(breatheInTime + breatheOutTime + holdTime, breathingSetCount),
+  );
 
   const handleBreatheInChange = (e) => {
-    setBreatheInTime(e.target.value);
+    const value = e.target.value;
+    const oneSetTime = breatheOutTime + holdTime + value;
+    setDuration(getDuration(oneSetTime, breathingSetCount));
+    setBreatheInTime(value);
   };
 
   const handleHoldChange = (e) => {
-    setHoldTime(e.target.value);
+    const value = e.target.value;
+    const oneSetTime = breatheInTime + breatheOutTime + value;
+    setDuration(getDuration(oneSetTime, breathingSetCount));
+    setHoldTime(value);
   };
 
   const handleBreatheOutChange = (e) => {
-    setBreatheOutTime(e.target.value);
+    const value = e.target.value;
+    const oneSetTime = breatheInTime + holdTime + value;
+    setDuration(getDuration(oneSetTime, breathingSetCount));
+    setBreatheOutTime(value);
   };
 
-  const handleDurationChange = (e) => {
-    setDurationTime(e.target.value);
+  const handleBreathingSetChange = (e) => {
+    const value = e.target.value;
+    const oneSetTime = breatheInTime + breatheOutTime + holdTime;
+    setDuration(getDuration(oneSetTime, value));
+    setBreathingSetCount(value);
   };
 
   const handlSubmit = (e) => {
@@ -29,7 +53,7 @@ const TimerForm = ({ phases, duration, onStart }) => {
       breatheInTime: breatheInTime,
       holdTime: holdTime,
       breatheOutTime: breatheOutTime,
-      duration: durationTime,
+      breathingSets: breathingSetCount,
     });
   };
 
@@ -39,6 +63,7 @@ const TimerForm = ({ phases, duration, onStart }) => {
         <div className="submit">
           <button>Start</button>
         </div>
+        <div className="timeExplanation">Time is calculated in seconds</div>
         <div className="field">
           <label htmlFor="breatheIn">Breathe In Time: </label>
           <input
@@ -76,15 +101,18 @@ const TimerForm = ({ phases, duration, onStart }) => {
           />
         </div>
         <div className="field">
-          <label htmlFor="hold">Duration: </label>
+          <label htmlFor="hold">Breathing Sets: </label>
           <input
             type="number"
             name="duration"
-            min="8"
-            value={durationTime}
-            onChange={handleDurationChange}
+            min="5"
+            value={breathingSetCount}
+            onChange={handleBreathingSetChange}
             required
           />
+          <div className="duration">
+            Total Time: {duration.minutes} minutes {duration.seconds} seconds
+          </div>
         </div>
       </form>
     </div>

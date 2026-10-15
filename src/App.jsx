@@ -4,12 +4,16 @@ import Timer from "./components/timer/Timer";
 import TimerForm from "./components/timerform/TimerForm";
 
 const defaultPhases = { breatheIn: 2, hold: 3, breatheOut: 3 };
-const defaultDuration = 60;
+const defaultBreathingSets = 5;
 
 function App() {
   const [phases, setPhases] = useState(defaultPhases);
-  const [duration, setDuration] = useState(defaultDuration);
+  const [breathingSets, setBreathingSets] = useState(defaultBreathingSets);
   const [start, setStart] = useState(false);
+
+  const duration =
+    Object.values(phases).reduce((prev, current) => prev + current) *
+    breathingSets;
 
   const handleStart = (data) => {
     setPhases({
@@ -17,13 +21,15 @@ function App() {
       hold: data.holdTime,
       breatheOut: data.breatheOutTime,
     });
-    setDuration(data.duration);
+    setBreathingSets(data.breathingSets);
     setStart(true);
   };
 
   const handleRestart = () => {
     setStart(false);
   };
+
+  console.log(Object.values(phases).reduce((prev, current) => prev + current));
 
   return (
     <main>
@@ -34,7 +40,11 @@ function App() {
         onRestart={handleRestart}
       />
       {!start && (
-        <TimerForm phases={phases} duration={duration} onStart={handleStart} />
+        <TimerForm
+          phases={phases}
+          breathingSets={breathingSets}
+          onStart={handleStart}
+        />
       )}
     </main>
   );
