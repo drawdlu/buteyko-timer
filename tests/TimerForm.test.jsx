@@ -20,7 +20,7 @@ describe("TimerForm Component", () => {
     const breatheInInput = screen.getByLabelText(/breathe in/i);
     const holdInput = screen.getByLabelText(/hold/i);
     const breatheOutInput = screen.getByLabelText(/breathe out/i);
-    const breathingSetsInput = screen.getByLabelText(/breathing sets/i);
+    const breathingSetsInput = screen.getByLabelText(/breathing cycles/i);
 
     expect(breatheInInput).toBeInTheDocument();
     expect(holdInput).toBeInTheDocument();

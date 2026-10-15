@@ -101,7 +101,7 @@ const TimerForm = ({ phases, breathingSets, onStart }) => {
           />
         </div>
         <div className="field">
-          <label htmlFor="hold">Breathing Sets: </label>
+          <label htmlFor="hold">Breathing Cycles: </label>
           <input
             type="number"
             name="duration"

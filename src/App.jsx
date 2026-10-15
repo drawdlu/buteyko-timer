@@ -4,7 +4,7 @@ import Timer from "./components/timer/Timer";
 import TimerForm from "./components/timerform/TimerForm";
 
 const defaultPhases = { breatheIn: 2, hold: 3, breatheOut: 3 };
-const defaultBreathingSets = 5;
+const defaultBreathingSets = 10;
 
 function App() {
   const [phases, setPhases] = useState(defaultPhases);
@@ -28,8 +28,6 @@ function App() {
   const handleRestart = () => {
     setStart(false);
   };
-
-  console.log(Object.values(phases).reduce((prev, current) => prev + current));
 
   return (
     <main>
