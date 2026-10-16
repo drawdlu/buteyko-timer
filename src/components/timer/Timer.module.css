@@ -1,0 +1,139 @@
+/* Circle */
+
+.componentContainer {
+  height: 45ch;
+
+  display: flex;
+  flex-direction: column;
+}
+
+.breathingCircle {
+  --mobile-size: 20ch;
+  --scale-factor: 1.4;
+
+  border: 5px solid var(--default-border-color);
+  height: var(--mobile-size);
+  width: var(--mobile-size);
+  border-radius: 50%;
+  margin: 10ch auto;
+
+  display: flex;
+  flex-direction: column;
+}
+
+.breathingCircle.breatheIn {
+  border-color: var(--breathe-in-color);
+
+  animation: expand-circle var(--breathing-duration);
+  animation-fill-mode: forwards;
+}
+
+.breathingCircle.breatheOut {
+  border-color: var(--breathe-out-color);
+
+  animation: retract-circle var(--breathing-duration);
+}
+
+.breathingCircle.isPaused {
+  animation-play-state: paused;
+}
+
+.breathingCircle.hold {
+  border-color: var(--hold-color);
+}
+
+/* Text */
+
+.breathingText {
+  font-size: 1.5rem;
+  margin: auto 0;
+
+  align-self: center;
+}
+
+.breathingText.breatheIn.isPaused {
+  animation-play-state: paused;
+}
+
+.breathingText.breatheOut.isPaused {
+  animation-play-state: paused;
+}
+
+.breathingText .staticText {
+  color: var(--breathe-in-color);
+}
+
+.breathingText.breatheIn {
+  animation: retract-prevent-scale var(--breathing-duration);
+  animation-fill-mode: forwards;
+}
+
+.breathingText.breatheOut {
+  animation: expand-prevent-scale var(--breathing-duration);
+  animation-fill-mode: forwards;
+}
+
+.count {
+  position: relative;
+  top: 1ch;
+  text-align: center;
+}
+
+.phaseName {
+  position: relative;
+  top: 3ch;
+  font-size: 1.2rem;
+  transition: 1s;
+}
+
+.phaseName.breatheIn {
+  color: var(--breathe-in-color);
+}
+
+.phaseName.breatheOut {
+  color: var(--breathe-out-color);
+}
+
+.phaseName.hold {
+  color: var(--hold-color);
+}
+
+@keyframes expand-circle {
+  0% {
+    transform: scale(1);
+  }
+
+  100% {
+    transform: scale(var(--scale-factor));
+  }
+}
+
+@keyframes retract-circle {
+  0% {
+    transform: scale(var(--scale-factor));
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes retract-prevent-scale {
+  0% {
+    transform: scale(1);
+  }
+
+  100% {
+    transform: scale(calc(1 / var(--scale-factor)));
+  }
+}
+
+@keyframes expand-prevent-scale {
+  0% {
+    transform: scale(calc(1 / var(--scale-factor)));
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}

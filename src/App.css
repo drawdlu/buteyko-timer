@@ -1,0 +1,37 @@
+@font-face {
+  font-family: "google-sans-flex";
+  src: url("./fonts/GoogleSansFlex-VariableFont_GRAD\,ROND\,opsz\,slnt\,wdth\,wght.woff2")
+    format("woff2");
+}
+
+@font-face {
+  font-family: "playfair-display";
+  src: url("./fonts/PlayfairDisplay-VariableFont_wght.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "roboto";
+  src: url("./fonts/Roboto-VariableFont_wdth\,wght.woff2") format(woff2);
+}
+
+html {
+  --main-background-color: rgb(56, 38, 51);
+  --main-font-color: rgb(241, 240, 235);
+  --breathe-in-color: rgb(146, 189, 163);
+  --breathe-out-color: rgb(165, 204, 107);
+  --hold-color: rgb(244, 232, 193);
+  --default-border-color: rgb(146, 189, 163);
+  color: var(--main-font-color);
+
+  font-family:
+    "google-sans-flex",
+    "playfair-display",
+    "roboto",
+    Arial,
+    Helvetica,
+    sans-serif,
+    system-ui,
+    -apple-system;
+
+  background-color: var(--main-background-color);
+}
