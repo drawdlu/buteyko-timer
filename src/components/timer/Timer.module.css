@@ -7,6 +7,7 @@
 
 .breathingCircle {
   --mobile-size: 20ch;
+  --bigger-screen-size: 25ch;
   --scale-factor: 1.4;
 
   border: 5px solid var(--default-border-color);
@@ -189,4 +190,27 @@ button:active {
     var(--breathe-in-color) 70%,
     transparent
   );
+}
+
+@media screen and (min-width: 524px) {
+  .breathingText {
+    font-size: 2rem;
+  }
+
+  .phaseName {
+    font-size: 1.2ch;
+  }
+
+  .breathingCircle {
+    height: var(--bigger-screen-size);
+    width: var(--bigger-screen-size);
+  }
+
+  .pauseButton button {
+    font-size: 2ch;
+  }
+
+  .restartButton button {
+    font-size: 2.3rem;
+  }
 }

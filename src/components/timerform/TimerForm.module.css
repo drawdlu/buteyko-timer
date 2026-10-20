@@ -73,3 +73,15 @@ input {
   padding: 1ch 2ch;
   margin-top: 1ch;
 }
+
+@media screen and (min-width: 524px) {
+  .field {
+    max-width: 40ch;
+  }
+
+  .timerForm {
+    max-width: 40ch;
+    margin: 0 auto;
+    font-size: 1.75ch;
+  }
+}
