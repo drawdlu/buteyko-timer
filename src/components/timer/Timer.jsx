@@ -121,15 +121,15 @@ const Timer = ({ phases, duration, start, onRestart }) => {
             </div>
           </div>
         </div>
-        <div className="pauseButton">
+        <div className={styles.pauseButton}>
           {pause ? (
-            <button onClick={continueTimer}>Continue</button>
+            <button onClick={continueTimer}>CONTINUE</button>
           ) : (
-            <button onClick={pauseTimer}>Pause</button>
+            <button onClick={pauseTimer}>PAUSE</button>
           )}
         </div>
-        <div className={styles.restart}>
-          <button onClick={handleRestart}>Restart Symbol</button>
+        <div className={styles.restartButton}>
+          <button onClick={handleRestart}>↻</button>
         </div>
       </div>
     );

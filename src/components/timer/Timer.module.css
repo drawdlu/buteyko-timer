@@ -40,6 +40,26 @@
   border-color: var(--hold-color);
 }
 
+@keyframes expand-circle {
+  0% {
+    transform: scale(1);
+  }
+
+  100% {
+    transform: scale(var(--scale-factor));
+  }
+}
+
+@keyframes retract-circle {
+  0% {
+    transform: scale(var(--scale-factor));
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}
+
 /* Text */
 
 .breathingText {
@@ -96,26 +116,6 @@
   color: var(--hold-color);
 }
 
-@keyframes expand-circle {
-  0% {
-    transform: scale(1);
-  }
-
-  100% {
-    transform: scale(var(--scale-factor));
-  }
-}
-
-@keyframes retract-circle {
-  0% {
-    transform: scale(var(--scale-factor));
-  }
-
-  100% {
-    transform: scale(1);
-  }
-}
-
 @keyframes retract-prevent-scale {
   0% {
     transform: scale(1);
@@ -134,4 +134,59 @@
   100% {
     transform: scale(1);
   }
+}
+
+/* Buttons */
+
+.pauseButton,
+.restartButton {
+  display: flex;
+  justify-content: center;
+}
+
+.pauseButton button {
+  padding: 1ch 2ch;
+  margin-bottom: 2ch;
+  font-weight: bold;
+  border-radius: 10px;
+  background-color: color-mix(
+    in srgb,
+    var(--breathe-in-color) 90%,
+    transparent
+  );
+  color: var(--main-background-color);
+  font-size: 1.75ch;
+  letter-spacing: 0.5ch;
+  box-shadow: 5px 5px 10px black;
+  border: none;
+}
+
+.restartButton button {
+  padding: 0;
+  font-size: 2rem;
+  /* background-color: var(--main-background-color); */
+  border: none;
+  color: var(--main-background-color);
+  font-weight: bold;
+  background-color: color-mix(
+    in srgb,
+    var(--breathe-in-color) 90%,
+    transparent
+  );
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  box-shadow: 5px 5px 10px black;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+button:active {
+  background-color: color-mix(
+    in srgb,
+    var(--breathe-in-color) 70%,
+    transparent
+  );
 }
