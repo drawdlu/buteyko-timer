@@ -1,4 +1,5 @@
 import { useState } from "react";
+import styles from "./TimerForm.module.css";
 
 const TimerForm = ({ phases, breathingSets, onStart }) => {
   const [breatheInTime, setBreatheInTime] = useState(phases.breatheIn);
@@ -58,13 +59,15 @@ const TimerForm = ({ phases, breathingSets, onStart }) => {
   };
 
   return (
-    <div className="timerForm">
+    <div className={styles.timerForm}>
       <form onSubmit={handlSubmit}>
-        <div className="submit">
-          <button>Start</button>
+        <div className={styles.submitButton}>
+          <button>START</button>
         </div>
-        <div className="timeExplanation">Time is calculated in seconds</div>
-        <div className="field">
+        <div className={styles.timeExplanation}>
+          Time is calculated in seconds
+        </div>
+        <div className={styles.field}>
           <label htmlFor="breatheIn">Breathe In Time: </label>
           <input
             type="number"
@@ -76,7 +79,7 @@ const TimerForm = ({ phases, breathingSets, onStart }) => {
             required
           />
         </div>
-        <div className="field">
+        <div className={styles.field}>
           <label htmlFor="breatheOut">Breathe Out Time: </label>
           <input
             type="number"
@@ -88,7 +91,7 @@ const TimerForm = ({ phases, breathingSets, onStart }) => {
             required
           />
         </div>
-        <div className="field">
+        <div className={styles.field}>
           <label htmlFor="hold">Hold Time: </label>
           <input
             type="number"
@@ -100,7 +103,7 @@ const TimerForm = ({ phases, breathingSets, onStart }) => {
             required
           />
         </div>
-        <div className="field">
+        <div className={styles.field}>
           <label htmlFor="hold">Breathing Cycles: </label>
           <input
             type="number"
@@ -110,9 +113,9 @@ const TimerForm = ({ phases, breathingSets, onStart }) => {
             onChange={handleBreathingSetChange}
             required
           />
-          <div className="duration">
-            Total Time: {duration.minutes} minutes {duration.seconds} seconds
-          </div>
+        </div>
+        <div className={styles.duration}>
+          Total Time: {duration.minutes} minutes {duration.seconds} seconds
         </div>
       </form>
     </div>

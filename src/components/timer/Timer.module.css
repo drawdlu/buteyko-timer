@@ -1,8 +1,6 @@
 /* Circle */
 
 .componentContainer {
-  height: 45ch;
-
   display: flex;
   flex-direction: column;
 }
