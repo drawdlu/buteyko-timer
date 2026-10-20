@@ -16,32 +16,35 @@ const TimerForm = ({ phases, breathingSets, onStart }) => {
   };
 
   const [duration, setDuration] = useState(
-    getDuration(breatheInTime + breatheOutTime + holdTime, breathingSetCount),
+    getDuration(
+      +breatheInTime + +breatheOutTime + +holdTime,
+      +breathingSetCount,
+    ),
   );
 
   const handleBreatheInChange = (e) => {
-    const value = e.target.value;
+    const value = +e.target.value;
     const oneSetTime = +breatheOutTime + +holdTime + +value;
-    setDuration(getDuration(oneSetTime, breathingSetCount));
+    setDuration(getDuration(oneSetTime, +breathingSetCount));
     setBreatheInTime(value);
   };
 
   const handleHoldChange = (e) => {
-    const value = e.target.value;
+    const value = +e.target.value;
     const oneSetTime = +breatheInTime + +breatheOutTime + +value;
-    setDuration(getDuration(oneSetTime, breathingSetCount));
+    setDuration(getDuration(oneSetTime, +breathingSetCount));
     setHoldTime(value);
   };
 
   const handleBreatheOutChange = (e) => {
-    const value = e.target.value;
+    const value = +e.target.value;
     const oneSetTime = +breatheInTime + +holdTime + +value;
-    setDuration(getDuration(oneSetTime, breathingSetCount));
+    setDuration(getDuration(oneSetTime, +breathingSetCount));
     setBreatheOutTime(value);
   };
 
   const handleBreathingSetChange = (e) => {
-    const value = e.target.value;
+    const value = +e.target.value;
     const oneSetTime = +breatheInTime + +breatheOutTime + +holdTime;
     setDuration(getDuration(oneSetTime, value));
     setBreathingSetCount(value);
