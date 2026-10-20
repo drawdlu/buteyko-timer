@@ -5,7 +5,7 @@ import TimerForm from "../src/components/timerform/TimerForm";
 
 describe("TimerForm Component", () => {
   const phases = { breatheIn: 2, hold: 3, breatheOut: 3 };
-  const breathingSets = 5;
+  const breathingSets = 10;
   const handleStart = vi.fn();
 
   it("renders the timer form", () => {
@@ -62,5 +62,28 @@ describe("TimerForm Component", () => {
     await user.click(button);
 
     expect(handleStart).not.toHaveBeenCalled();
+  });
+
+  it("updates total time when inputs updated", async () => {
+    const user = userEvent.setup();
+
+    render(
+      <TimerForm
+        phases={phases}
+        breathingSets={breathingSets}
+        onStart={handleStart}
+      />,
+    );
+
+    const breatheInInput = screen.getByLabelText(/breathe in/i);
+    const breatheOutInput = screen.getByLabelText(/breathe out/i);
+    const holdInput = screen.getByLabelText(/hold/i);
+    const breathingCyclesInput = screen.getByLabelText(/breathing cycles/i);
+    await user.type(breatheInInput, "{backspace}4");
+    await user.type(breatheOutInput, "{backspace}4");
+    await user.type(holdInput, "{backspace}4");
+    await user.type(breathingCyclesInput, "{backspace}5");
+
+    expect(screen.getByText(/3 minutes 0 seconds/i)).toBeInTheDocument();
   });
 });

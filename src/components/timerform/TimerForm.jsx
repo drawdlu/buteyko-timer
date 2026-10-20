@@ -21,28 +21,28 @@ const TimerForm = ({ phases, breathingSets, onStart }) => {
 
   const handleBreatheInChange = (e) => {
     const value = e.target.value;
-    const oneSetTime = breatheOutTime + holdTime + value;
+    const oneSetTime = +breatheOutTime + +holdTime + +value;
     setDuration(getDuration(oneSetTime, breathingSetCount));
     setBreatheInTime(value);
   };
 
   const handleHoldChange = (e) => {
     const value = e.target.value;
-    const oneSetTime = breatheInTime + breatheOutTime + value;
+    const oneSetTime = +breatheInTime + +breatheOutTime + +value;
     setDuration(getDuration(oneSetTime, breathingSetCount));
     setHoldTime(value);
   };
 
   const handleBreatheOutChange = (e) => {
     const value = e.target.value;
-    const oneSetTime = breatheInTime + holdTime + value;
+    const oneSetTime = +breatheInTime + +holdTime + +value;
     setDuration(getDuration(oneSetTime, breathingSetCount));
     setBreatheOutTime(value);
   };
 
   const handleBreathingSetChange = (e) => {
     const value = e.target.value;
-    const oneSetTime = breatheInTime + breatheOutTime + holdTime;
+    const oneSetTime = +breatheInTime + +breatheOutTime + +holdTime;
     setDuration(getDuration(oneSetTime, value));
     setBreathingSetCount(value);
   };
@@ -104,10 +104,11 @@ const TimerForm = ({ phases, breathingSets, onStart }) => {
           />
         </div>
         <div className={styles.field}>
-          <label htmlFor="hold">Breathing Cycles: </label>
+          <label htmlFor="duration">Breathing Cycles: </label>
           <input
             type="number"
             name="duration"
+            id="duration"
             min="5"
             value={breathingSetCount}
             onChange={handleBreathingSetChange}
@@ -115,7 +116,9 @@ const TimerForm = ({ phases, breathingSets, onStart }) => {
           />
         </div>
         <div className={styles.duration}>
-          Total Time: {duration.minutes} minutes {duration.seconds} seconds
+          Total Time: {duration.minutes}{" "}
+          {duration.minutes > 1 ? "minutes" : "minute"} {duration.seconds}{" "}
+          seconds
         </div>
       </form>
     </div>
