@@ -2,6 +2,8 @@
 
 An interval timer for buteyko breathing exercises.
 
+🚀 [View App](https://drawdlu.github.io/buteyko-timer/)
+
 ![Screenshot of Buteyko Timer](timer.png)
 
 ## Features
