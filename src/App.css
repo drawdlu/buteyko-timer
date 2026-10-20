@@ -36,3 +36,7 @@ html {
   background-color: var(--main-background-color);
   padding-bottom: 5ch;
 }
+
+button:hover {
+  cursor: pointer;
+}

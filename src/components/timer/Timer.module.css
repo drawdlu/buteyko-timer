@@ -192,6 +192,15 @@ button:active {
   );
 }
 
+.pauseButton button:hover,
+.restartButton button:hover {
+  background-color: color-mix(
+    in srgb,
+    var(--breathe-in-color) 75%,
+    transparent
+  );
+}
+
 @media screen and (min-width: 524px) {
   .breathingText {
     font-size: 2rem;

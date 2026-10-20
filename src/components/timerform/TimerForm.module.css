@@ -43,6 +43,14 @@
   );
 }
 
+.submitButton button:hover {
+  background-color: color-mix(
+    in srgb,
+    var(--breathe-in-color) 85%,
+    transparent
+  );
+}
+
 .field {
   width: 100%;
   display: flex;
