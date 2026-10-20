@@ -34,4 +34,5 @@ html {
     -apple-system;
 
   background-color: var(--main-background-color);
+  padding-bottom: 5ch;
 }
