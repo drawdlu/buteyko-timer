@@ -1,5 +1,6 @@
 import { describe, it, expect } from "vitest";
-import { render } from "@testing-library/react";
+import { render, screen } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
 
 import App from "./App";
 
@@ -14,11 +15,30 @@ describe("something truthy and falsy", () => {
 });
 
 describe("App", () => {
-  it("renders headline", () => {
-    render(<App title="React" />);
+  it("saves values to local", async () => {
+    localStorage.clear();
+    const user = userEvent.setup();
 
-    // screen.debug();
+    render(<App />);
 
-    // check if App components renders headline
+    const startButton = screen.getByRole("button", { name: /start/i });
+    const breatheInInput = screen.getByLabelText(/breathe in/i);
+    const breatheOutInput = screen.getByLabelText(/breathe out/i);
+    const holdInput = screen.getByLabelText(/hold/i);
+    const setsInput = screen.getByLabelText(/cycles/i);
+
+    await user.type(breatheInInput, "{backspace}4");
+    await user.type(breatheOutInput, "{backspace}4");
+    await user.type(holdInput, "{backspace}4");
+    await user.type(setsInput, "{backspace}5");
+    await user.click(startButton);
+
+    const phases = JSON.parse(localStorage.getItem("phases"));
+    const expectedPhases = { breatheIn: 4, breatheOut: 4, hold: 4 };
+    const sets = localStorage.getItem("sets");
+    const expectedSets = "15";
+
+    expect(phases).toEqual(expectedPhases);
+    expect(sets).toEqual(expectedSets);
   });
 });

@@ -7,8 +7,20 @@ const defaultPhases = { breatheIn: 2, hold: 3, breatheOut: 3 };
 const defaultBreathingSets = 10;
 
 function App() {
-  const [phases, setPhases] = useState(defaultPhases);
-  const [breathingSets, setBreathingSets] = useState(defaultBreathingSets);
+  const getPhases = () => {
+    const localPhases = JSON.parse(localStorage.getItem("phases"));
+
+    return localPhases ? localPhases : defaultPhases;
+  };
+
+  const getSets = () => {
+    const localSets = localStorage.getItem("sets");
+
+    return localSets ? localSets : defaultBreathingSets;
+  };
+
+  const [phases, setPhases] = useState(getPhases());
+  const [breathingSets, setBreathingSets] = useState(getSets());
   const [start, setStart] = useState(false);
 
   const duration =
@@ -16,13 +28,21 @@ function App() {
     breathingSets;
 
   const handleStart = (data) => {
-    setPhases({
+    const dataPhases = {
       breatheIn: data.breatheInTime,
       hold: data.holdTime,
       breatheOut: data.breatheOutTime,
-    });
+    };
+    setPhases(dataPhases);
     setBreathingSets(data.breathingSets);
     setStart(true);
+
+    saveToLocal(dataPhases, data.breathingSets);
+  };
+
+  const saveToLocal = (dataPhases, dataSets) => {
+    localStorage.setItem("phases", JSON.stringify(dataPhases));
+    localStorage.setItem("sets", dataSets);
   };
 
   const handleRestart = () => {
