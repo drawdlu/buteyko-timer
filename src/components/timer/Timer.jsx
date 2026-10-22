@@ -98,8 +98,8 @@ const Timer = ({ phases, duration, start, onRestart }) => {
             <span className={styles.staticText}>Done</span>
           </div>
         </div>
-        <div className="restart">
-          <button onClick={handleRestart}>Restart Symbol</button>
+        <div className={styles.restartButton}>
+          <button onClick={handleRestart}>↻</button>
         </div>
       </div>
     );
