@@ -16,5 +16,5 @@ An interval timer for buteyko breathing exercises.
 
 ## Tech Stach
 
-💻 Languages: JavaScript
-⚙️ Frameworks: React
+- 💻 Languages: JavaScript
+- ⚙️ Library: React
